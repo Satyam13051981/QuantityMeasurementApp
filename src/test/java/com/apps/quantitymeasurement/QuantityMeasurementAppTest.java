@@ -40,8 +40,8 @@ public class QuantityMeasurementAppTest {
     @Test
     public void instanceTest(){
         Feet feet = new Feet(2.34);
-        Feet feet2 = new Feet(2);
-        assertFalse(feet.equals("MyObj"), "Different instance");
+        String feetString = "String Obj";
+        assertFalse(feet.equals(feetString), "Different instance");
     }
 
     @Test
