@@ -13,10 +13,11 @@ public class Length {
         return value*unit.getConversionFactor();
     }
 
-    boolean compare(Length length){
+    private boolean compare(Length length){
         return Double.compare(convertToBaseUnit(length.value, length.unit), convertToBaseUnit(value, unit))==0;
     }
 
+    @Override
     public boolean equals(Object obj){
         if(this == obj){
             return true;
@@ -26,5 +27,15 @@ public class Length {
         }
         Length length = (Length) obj;
         return compare(length);
+    }
+
+    public Length convertTo(LengthUnit targetUnit){
+        double valueInBaseUnit=convertToBaseUnit(value, unit);
+        double targetValue= valueInBaseUnit/targetUnit.getConversionFactor();
+        return new Length(targetValue, targetUnit);
+    }
+
+    public String toString(){
+        return "Length: value= "+ value + " Unit= " +unit;
     }
 }
