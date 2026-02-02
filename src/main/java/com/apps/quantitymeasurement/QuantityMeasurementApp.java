@@ -48,6 +48,10 @@ public class QuantityMeasurementApp {
         System.out.println(demonstrateLengthConversion(1, LengthUnit.FEET, LengthUnit.INCHES));
         System.out.println(demonstrateLengthConversion(3, LengthUnit.YARDS, LengthUnit.FEET));
         System.out.println(demonstrateLengthConversion(36, LengthUnit.INCHES, LengthUnit.YARDS));
-        System.out.println(demonstrateLengthConversion(1, null, LengthUnit.INCHES));
+        System.out.println(demonstrateLengthConversion(1, LengthUnit.INCHES, LengthUnit.INCHES));
+
+        //UC6
+        System.out.println(length5.add(length6));
+
     }
 }

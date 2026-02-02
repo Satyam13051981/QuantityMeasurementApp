@@ -47,9 +47,19 @@ public class Length {
             throw new RuntimeException("Is infinite or NAN");
         }
         double valueInBaseUnit=convertToBaseUnit(value, unit);
+        //converting to target unit
         double targetValue= valueInBaseUnit/targetUnit.getConversionFactor();
         targetValue = Math.round(targetValue *100)/100.0;
         return new Length(targetValue, targetUnit);
+    }
+
+    public Length add(Length thatLength){
+        double valueSorceInBaseUnit=convertToBaseUnit(value, unit);
+        double valueTargetInBaseUnit=convertToBaseUnit(thatLength.value, thatLength.unit);
+        double sumInBaseUnit = valueSorceInBaseUnit+valueTargetInBaseUnit;
+        //converting to target unit
+        double targetValue= sumInBaseUnit/thatLength.unit.getConversionFactor();
+        return new Length(targetValue, thatLength.unit);
     }
 
     @Override
