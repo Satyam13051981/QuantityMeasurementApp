@@ -1,6 +1,16 @@
 package com.apps.quantitymeasurement;
 
 public class QuantityMeasurementApp {
+
+    public static Length demonstrateLengthConversion(double value, LengthUnit fromUnit, LengthUnit toUnit){
+        Length length= new Length(value, fromUnit);
+        return length.convertTo(toUnit);
+    }
+
+    public static Length demonstrateLengthConversion(Length length, LengthUnit toUnit){
+        return length.convertTo(toUnit);
+    }
+
     public static void main(String[] args) {
         //UC1
         Feet feet = new Feet(2.34);
@@ -30,6 +40,14 @@ public class QuantityMeasurementApp {
         Length length6= new Length(39.3701, LengthUnit.INCHES);
         System.out.println("Are Lengths equal? " +length5.equals(length6));
 
+        //UC5
+        Length length8= new Length(8, LengthUnit.CENTIMETERS);
+        System.out.println(demonstrateLengthConversion(length8, LengthUnit.YARDS));
 
+        System.out.println(demonstrateLengthConversion(8, LengthUnit.YARDS, LengthUnit.INCHES));
+        System.out.println(demonstrateLengthConversion(1, LengthUnit.FEET, LengthUnit.INCHES));
+        System.out.println(demonstrateLengthConversion(3, LengthUnit.YARDS, LengthUnit.FEET));
+        System.out.println(demonstrateLengthConversion(36, LengthUnit.INCHES, LengthUnit.YARDS));
+        System.out.println(demonstrateLengthConversion(1, null, LengthUnit.INCHES));
     }
 }
