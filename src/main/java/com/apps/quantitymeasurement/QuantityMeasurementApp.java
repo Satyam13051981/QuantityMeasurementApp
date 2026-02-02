@@ -2,6 +2,7 @@ package com.apps.quantitymeasurement;
 
 public class QuantityMeasurementApp {
 
+    //UC5
     public static Length demonstrateLengthConversion(double value, LengthUnit fromUnit, LengthUnit toUnit){
         Length length= new Length(value, fromUnit);
         return length.convertTo(toUnit);
@@ -9,6 +10,11 @@ public class QuantityMeasurementApp {
 
     public static Length demonstrateLengthConversion(Length length, LengthUnit toUnit){
         return length.convertTo(toUnit);
+    }
+
+    //UC6
+    public static Length demonstrateLengthAddition(Length length1, Length length2){
+        return length1.add(length2);
     }
 
     public static void main(String[] args) {
@@ -51,7 +57,9 @@ public class QuantityMeasurementApp {
         System.out.println(demonstrateLengthConversion(1, LengthUnit.INCHES, LengthUnit.INCHES));
 
         //UC6
-        System.out.println(length5.add(length6));
+        Length length9= new Length(1, LengthUnit.YARDS);
+        Length length10= new Length(36, LengthUnit.INCHES);
+        System.out.println(demonstrateLengthAddition(length9, length10));
 
     }
 }

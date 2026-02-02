@@ -202,41 +202,41 @@ public class LengthTest {
     //UC5
     @Test
     public void testConversion_FeetToInches(){
-        assertEquals(demonstrateLengthConversion(1, LengthUnit.FEET, LengthUnit.INCHES).toString(), String.valueOf(12.0));
+        assertEquals(12.0, demonstrateLengthConversion(1, LengthUnit.FEET, LengthUnit.INCHES).getValue());
     }
     @Test
     public void testConversion_InchesToFeet(){
-        assertEquals(demonstrateLengthConversion(24, LengthUnit.INCHES, LengthUnit.FEET).toString(), String.valueOf(2.0));
+        assertEquals(2.0, demonstrateLengthConversion(24, LengthUnit.INCHES, LengthUnit.FEET).getValue());
     }
     @Test
     public void testConversion_YardToInches(){
-        assertEquals(demonstrateLengthConversion(1, LengthUnit.YARDS, LengthUnit.INCHES).toString(), String.valueOf(36.0));
+        assertEquals(36.0, demonstrateLengthConversion(1, LengthUnit.YARDS, LengthUnit.INCHES).getValue());
     }
     @Test
     public void testConversion_InchesToYard(){
-        assertEquals(demonstrateLengthConversion(72, LengthUnit.INCHES, LengthUnit.YARDS).toString(), String.valueOf(2.0));
+        assertEquals(2.0, demonstrateLengthConversion(72, LengthUnit.INCHES, LengthUnit.YARDS).getValue());
     }
     @Test
     public void testConversion_CentimetersToInches(){
-        assertEquals(demonstrateLengthConversion(2.54, LengthUnit.CENTIMETERS, LengthUnit.INCHES).toString(), String.valueOf(1.0));
+        assertEquals(1.0, demonstrateLengthConversion(2.54, LengthUnit.CENTIMETERS, LengthUnit.INCHES).getValue());
     }
     @Test
     public void testConversion_FeetToYard(){
-        assertEquals(demonstrateLengthConversion(6, LengthUnit.FEET, LengthUnit.YARDS).toString(), String.valueOf(2.0));
+        assertEquals(2.0, demonstrateLengthConversion(6, LengthUnit.FEET, LengthUnit.YARDS).getValue());
     }
     @Test
     public void testConversion_RoundTrip_PreservesValue(){
-        assertEquals(demonstrateLengthConversion(
+        assertEquals(6.0, demonstrateLengthConversion(
                 (demonstrateLengthConversion(6, LengthUnit.FEET, LengthUnit.YARDS)).getValue(),
-                LengthUnit.YARDS, LengthUnit.FEET).toString(), String.valueOf(6.0));
+                LengthUnit.YARDS, LengthUnit.FEET).getValue());
     }
     @Test
     public void testConversion_ZeroValue(){
-        assertEquals(demonstrateLengthConversion(0, LengthUnit.FEET, LengthUnit.INCHES).toString(), String.valueOf(0.0));
+        assertEquals(0.0, demonstrateLengthConversion(0, LengthUnit.FEET, LengthUnit.INCHES).getValue());
     }
     @Test
     public void testConversion_NegativeValue(){
-        assertEquals(demonstrateLengthConversion(-1, LengthUnit.FEET, LengthUnit.INCHES).toString(), String.valueOf(-12.0));
+        assertEquals(-12.0, demonstrateLengthConversion(-1, LengthUnit.FEET, LengthUnit.INCHES).getValue());
     }
     @Test
     public void testConversion_InvalidUnit_Throws(){
@@ -254,9 +254,12 @@ public class LengthTest {
     @Test
     public void testConversion_PrecisionTolerance(){
         double epsilon = 1e-6;
-        assertEquals( demonstrateLengthConversion(-1, LengthUnit.FEET, LengthUnit.INCHES).toString()
-                    , String.valueOf(-12.0),
-                String.valueOf(epsilon));
+        assertEquals(-12.0
+                    , demonstrateLengthConversion(-1, LengthUnit.FEET, LengthUnit.INCHES).getValue(),
+                epsilon);
     }
+
+    //UC6
+
 
 }
