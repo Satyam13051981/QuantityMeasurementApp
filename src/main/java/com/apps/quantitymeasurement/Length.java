@@ -63,7 +63,11 @@ public class Length {
         return add(new Length(value, unit), thatLength, unit);
     }
 
-    public Length add(Length quantityLength1, Length quantityLength2, LengthUnit targetUnit){
+    public Length add(Length length, LengthUnit targetUnit){
+        return add(new Length(value,unit), new Length(length.value, length.unit), targetUnit);
+    }
+
+    private Length add(Length quantityLength1, Length quantityLength2, LengthUnit targetUnit){
         //Checking Target length
         Optional<Length> optLength1 = Optional.ofNullable(quantityLength2);
         optLength1.orElseThrow(NullPointerException::new);
@@ -71,7 +75,7 @@ public class Length {
         Optional<Length> optLength2 = Optional.ofNullable(quantityLength1);
         optLength2.orElseThrow(NullPointerException::new);
         //Checking null for source and target value
-        if(!(Double.isFinite(quantityLength1.value) || Double.isFinite(quantityLength2.value))){
+        if(!Double.isFinite(quantityLength1.value) || !Double.isFinite(quantityLength2.value)){
             throw new RuntimeException("Is infinite or NAN");
         }
         double valueLength1InBaseUnit=convertToBaseUnit(quantityLength1.value, quantityLength1.unit);

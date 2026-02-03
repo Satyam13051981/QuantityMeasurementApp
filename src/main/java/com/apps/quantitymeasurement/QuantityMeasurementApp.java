@@ -17,6 +17,11 @@ public class QuantityMeasurementApp {
         return length1.add(length2);
     }
 
+    //UC7
+    public static Length demonstrateLengthAddition(Length length1, Length length2, LengthUnit targetUnit){
+        return length1.add(length2, targetUnit);
+    }
+
     public static void main(String[] args) {
         //UC1
         Feet feet = new Feet(2.34);
@@ -60,6 +65,11 @@ public class QuantityMeasurementApp {
         Length length9= new Length(1, LengthUnit.YARDS);
         Length length10= new Length(36, LengthUnit.INCHES);
         System.out.println(demonstrateLengthAddition(length10, length9));
+
+        //UC7
+        Length length11= new Length(1, LengthUnit.FEET);
+        Length length12= new Length(12, LengthUnit.INCHES);
+        System.out.println(demonstrateLengthAddition(length11, length12, LengthUnit.YARDS));
 
     }
 }

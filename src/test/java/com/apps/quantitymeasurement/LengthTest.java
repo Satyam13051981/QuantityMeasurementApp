@@ -351,4 +351,119 @@ public class LengthTest {
                 epsilon
                 );
     }
+
+    //UC7
+    @Test
+    public void testAddition_ExplicitTargetUnit_Feet(){
+        Length length1= new Length(1, LengthUnit.FEET);
+        Length length2= new Length(12, LengthUnit.INCHES);
+        assertEquals(new Length(2, LengthUnit.FEET), demonstrateLengthAddition(length1, length2, LengthUnit.FEET));
+    }
+
+    @Test
+    public void testAddition_ExplicitTargetUnit_Inches(){
+        Length length1= new Length(1, LengthUnit.FEET);
+        Length length2= new Length(12, LengthUnit.INCHES);
+        assertEquals(new Length(24, LengthUnit.INCHES), demonstrateLengthAddition(length1, length2, LengthUnit.INCHES));
+    }
+
+    @Test
+    public void testAddition_ExplicitTargetUnit_Yards(){
+        double epsilon = 0.1d;
+        Length length1= new Length(1, LengthUnit.FEET);
+        Length length2= new Length(12, LengthUnit.INCHES);
+        assertEquals(0.66, demonstrateLengthAddition(length1, length2, LengthUnit.YARDS).getValue(),
+                epsilon);
+    }
+
+    @Test
+    public void testAddition_ExplicitTargetUnit_Centimeters(){
+        double epsilon = 0.1d;
+        Length length1= new Length(1, LengthUnit.INCHES);
+        Length length2= new Length(1, LengthUnit.INCHES);
+        assertEquals(5.08, demonstrateLengthAddition(length1, length2, LengthUnit.CENTIMETERS).getValue(),
+                epsilon);
+    }
+
+    @Test
+    public void testAddition_ExplicitTargetUnit_SameAsFirstOperand(){
+        Length length1= new Length(2, LengthUnit.YARDS);
+        Length length2= new Length(3, LengthUnit.FEET);
+        assertEquals(new Length(3.0, LengthUnit.YARDS), demonstrateLengthAddition(length1, length2, LengthUnit.YARDS));
+    }
+
+    @Test
+    public void testAddition_ExplicitTargetUnit_SameAsSecondOperand(){
+        Length length1= new Length(2, LengthUnit.YARDS);
+        Length length2= new Length(3, LengthUnit.FEET);
+        assertEquals(new Length(9.0, LengthUnit.FEET), demonstrateLengthAddition(length1, length2, LengthUnit.FEET));
+    }
+
+    @Test
+    public void testAddition_ExplicitTargetUnit_Commutative(){
+        Length length1= new Length(1, LengthUnit.FEET);
+        Length length2= new Length(12, LengthUnit.INCHES);
+        assertEquals(demonstrateLengthAddition(length1, length2, LengthUnit.YARDS),
+                demonstrateLengthAddition(length2, length1, LengthUnit.YARDS));
+    }
+
+    @Test
+    public void testAddition_ExplicitTargetUnit_WithZero(){
+        double epsilon = 0.1d;
+        Length length1= new Length(5, LengthUnit.FEET);
+        Length length2= new Length(0, LengthUnit.INCHES);
+        assertEquals(1.67, demonstrateLengthAddition(length1, length2, LengthUnit.YARDS).getValue(),
+                epsilon);
+    }
+
+    @Test
+    public void testAddition_ExplicitTargetUnit_NegativeValues(){
+        Length length1= new Length(5, LengthUnit.FEET);
+        Length length2= new Length(-2.0, LengthUnit.FEET);
+        assertEquals(new Length(36.0, LengthUnit.INCHES),demonstrateLengthAddition(length1, length2, LengthUnit.INCHES));
+    }
+
+    @Test
+    public void testAddition_ExplicitTargetUnit_NullTargetUnit(){
+        Length length1= new Length(1.0, LengthUnit.FEET);
+        Length length2= new Length(12.0, LengthUnit.INCHES);
+        assertThrows(NullPointerException.class, () ->{
+            demonstrateLengthAddition(length1, length2, null);
+        });
+    }
+
+    @Test
+    public void testAddition_ExplicitTargetUnit_LargeToSmallScale(){
+        Length length1= new Length(1000.0, LengthUnit.FEET);
+        Length length2= new Length(500.0, LengthUnit.FEET);
+        assertEquals(new Length(18000.0, LengthUnit.INCHES),demonstrateLengthAddition(length1, length2, LengthUnit.INCHES));
+    }
+
+    @Test
+    public void testAddition_ExplicitTargetUnit_SmallToLargeScale(){
+        Length length1= new Length(12.0, LengthUnit.INCHES);
+        Length length2= new Length(12.0, LengthUnit.INCHES);
+        assertEquals(new Length(0.67, LengthUnit.YARDS),demonstrateLengthAddition(length1, length2, LengthUnit.YARDS));
+    }
+
+    @Test
+    public void testAddition_ExplicitTargetUnit_NaN(){
+        double nan = Double.NaN;
+        Length length1= new Length(nan, LengthUnit.INCHES);
+        Length length2= new Length(12.0, LengthUnit.INCHES);
+        assertThrows(RuntimeException.class, ()->{
+            demonstrateLengthAddition(length1, length2, LengthUnit.YARDS);
+        });
+    }
+
+    @Test
+    public void testAddition_ExplicitTargetUnit_SecondNaN(){
+        double nan = Double.NaN;
+        Length length1= new Length(12.0, LengthUnit.INCHES);
+        Length length2= new Length(nan, LengthUnit.INCHES);
+        assertThrows(RuntimeException.class, ()->{
+            demonstrateLengthAddition(length1, length2, LengthUnit.YARDS);
+        });
+    }
+
 }
