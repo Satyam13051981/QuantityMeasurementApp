@@ -71,7 +71,7 @@ public class Length {
         Optional<Length> optLength2 = Optional.ofNullable(quantityLength1);
         optLength2.orElseThrow(NullPointerException::new);
         //Checking null for source and target value
-        if(!(Double.isFinite(quantityLength1.value) || Double.isFinite(quantityLength2.value))){
+        if(!Double.isFinite(quantityLength1.value) || !Double.isFinite(quantityLength2.value)){
             throw new RuntimeException("Is infinite or NAN");
         }
         double valueLength1InBaseUnit=convertToBaseUnit(quantityLength1.value, quantityLength1.unit);
