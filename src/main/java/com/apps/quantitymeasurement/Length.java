@@ -85,6 +85,6 @@ public class Length {
 
     @Override
     public String toString(){
-        return ""+value;
+        return value + " "+ unit;
     }
 }

@@ -59,7 +59,7 @@ public class QuantityMeasurementApp {
         //UC6
         Length length9= new Length(1, LengthUnit.YARDS);
         Length length10= new Length(36, LengthUnit.INCHES);
-        System.out.println(demonstrateLengthAddition(length9, length10));
+        System.out.println(demonstrateLengthAddition(length10, length9));
 
     }
 }
