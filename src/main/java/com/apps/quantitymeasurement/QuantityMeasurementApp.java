@@ -22,6 +22,19 @@ public class QuantityMeasurementApp {
         return length1.add(length2, targetUnit);
     }
 
+    //UC9
+    public static QuantityWeight demonstrateWeightConversion(QuantityWeight weight, WeightUnit toUnit){
+        return weight.convertTo(toUnit);
+    }
+
+    public static QuantityWeight demonstrateWeightAddition(QuantityWeight weight1, QuantityWeight weight2){
+        return weight1.add(weight2);
+    }
+
+    public static QuantityWeight demonstrateWeightAddition(QuantityWeight weight1, QuantityWeight weight2, WeightUnit targetUnit){
+        return weight1.add(weight2, targetUnit);
+    }
+
     public static void main(String[] args) {
         //UC1
         Feet feet = new Feet(2.34);
@@ -70,6 +83,69 @@ public class QuantityMeasurementApp {
         Length length11= new Length(1, LengthUnit.FEET);
         Length length12= new Length(12, LengthUnit.INCHES);
         System.out.println(demonstrateLengthAddition(length11, length12, LengthUnit.YARDS));
+
+        //UC9 Equality Comparisons
+        QuantityWeight weight1= new QuantityWeight(1.0, WeightUnit.KILOGRAM);
+        QuantityWeight weight2= new QuantityWeight(1.0, WeightUnit.KILOGRAM);
+        System.out.println("Is weight equal? "+ weight1.equals(weight2));
+
+        QuantityWeight weight3= new QuantityWeight(1000.0, WeightUnit.GRAM);
+        System.out.println("Is weight equal? "+ weight1.equals(weight3));
+
+        QuantityWeight weight4= new QuantityWeight(1.0, WeightUnit.POUND);
+        QuantityWeight weight5= new QuantityWeight(1.0, WeightUnit.POUND);
+        System.out.println("Is weight equal? "+ weight4.equals(weight5));
+
+        QuantityWeight weight6= new QuantityWeight(1.0, WeightUnit.KILOGRAM);
+        QuantityWeight weight7= new QuantityWeight(2.20462, WeightUnit.POUND);
+        System.out.println("Is weight equal? "+ weight6.equals(weight7));
+
+        QuantityWeight weight8= new QuantityWeight(500.0, WeightUnit.GRAM);
+        QuantityWeight weight9= new QuantityWeight(0.5, WeightUnit.KILOGRAM);
+        System.out.println("Is weight equal? "+ weight8.equals(weight9));
+
+        QuantityWeight weight10= new QuantityWeight(1.0, WeightUnit.POUND);
+        QuantityWeight weight11= new QuantityWeight(453.592, WeightUnit.GRAM);
+        System.out.println("Is weight equal? "+ weight10.equals(weight11));
+
+        //UC9 Unit conversion
+        QuantityWeight weight12= new QuantityWeight(1.0, WeightUnit.KILOGRAM);
+        System.out.println(demonstrateWeightConversion(weight12, WeightUnit.GRAM));
+
+        QuantityWeight weight13= new QuantityWeight(2.0, WeightUnit.POUND);
+        System.out.println(demonstrateWeightConversion(weight13, WeightUnit.KILOGRAM));
+
+        QuantityWeight weight14= new QuantityWeight(500.0, WeightUnit.GRAM);
+        System.out.println(demonstrateWeightConversion(weight14, WeightUnit.POUND));
+
+        QuantityWeight weight15= new QuantityWeight(0.0, WeightUnit.KILOGRAM);
+        System.out.println(demonstrateWeightConversion(weight15, WeightUnit.GRAM));
+
+        //UC9 Addition Operation (Implicit target Unit)
+        QuantityWeight weight16= new QuantityWeight(1.0, WeightUnit.KILOGRAM);
+        QuantityWeight weight17= new QuantityWeight(2.0, WeightUnit.KILOGRAM);
+        System.out.println(demonstrateWeightAddition(weight16,weight17));
+
+        QuantityWeight weight18= new QuantityWeight(1.0, WeightUnit.KILOGRAM);
+        QuantityWeight weight19= new QuantityWeight(1000.0, WeightUnit.GRAM);
+        System.out.println(demonstrateWeightAddition(weight18,weight19));
+
+        QuantityWeight weight20= new QuantityWeight(500.0, WeightUnit.GRAM);
+        QuantityWeight weight21= new QuantityWeight(0.5, WeightUnit.KILOGRAM);
+        System.out.println(demonstrateWeightAddition(weight20,weight21));
+
+        //UC9 Addition Operation (Explicit target Unit)
+        QuantityWeight weight22= new QuantityWeight(1.0, WeightUnit.KILOGRAM);
+        QuantityWeight weight23= new QuantityWeight(1000., WeightUnit.GRAM);
+        System.out.println(demonstrateWeightAddition(weight22,weight23, WeightUnit.GRAM));
+
+        QuantityWeight weight24= new QuantityWeight(1.0, WeightUnit.POUND);
+        QuantityWeight weight25= new QuantityWeight(453.592, WeightUnit.GRAM);
+        System.out.println(demonstrateWeightAddition(weight24,weight25, WeightUnit.POUND));
+
+        QuantityWeight weight26= new QuantityWeight(2.0, WeightUnit.KILOGRAM);
+        QuantityWeight weight27= new QuantityWeight(4.0, WeightUnit.POUND);
+        System.out.println(demonstrateWeightAddition(weight26,weight27, WeightUnit.KILOGRAM));
 
     }
 }

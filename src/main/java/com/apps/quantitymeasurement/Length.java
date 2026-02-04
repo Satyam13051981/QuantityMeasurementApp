@@ -3,15 +3,12 @@ package com.apps.quantitymeasurement;
 import java.util.Optional;
 
 public class Length {
-    private double value;
-    private LengthUnit unit;
+    private final double value;
+    private final LengthUnit unit;
 
     public Length(double value, LengthUnit unit){
         this.value=value;
         this.unit=unit;
-    }
-    public Length(){
-        super();
     }
 
     public double getValue(){
