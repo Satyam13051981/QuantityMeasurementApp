@@ -147,5 +147,6 @@ public class QuantityMeasurementApp {
         QuantityWeight weight27= new QuantityWeight(4.0, WeightUnit.POUND);
         System.out.println(demonstrateWeightAddition(weight26,weight27, WeightUnit.KILOGRAM));
 
+        System.out.println(length1.equals(weight26));
     }
 }
