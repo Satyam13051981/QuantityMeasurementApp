@@ -28,8 +28,4 @@ public enum LengthUnit implements IMeasurable{
         targetValue = Math.round(targetValue *100)/100.0;
         return targetValue;
     }
-
-    public static void main(String[] args) {
-        System.out.println( LengthUnit.FEET.convertFromBaseUnit(12.00));
-    }
 }

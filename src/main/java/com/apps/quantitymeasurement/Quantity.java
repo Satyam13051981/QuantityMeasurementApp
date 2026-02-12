@@ -1,8 +1,5 @@
 package com.apps.quantitymeasurement;
 
-import javax.crypto.KeyGenerator;
-import java.util.Optional;
-
 public class Quantity <U extends IMeasurable>{
     private double value;
     private U unit;
@@ -21,7 +18,8 @@ public class Quantity <U extends IMeasurable>{
     }
 
     public <U extends IMeasurable> double convertTo(U targetUnit){
-        if(!(targetUnit instanceof U)){
+
+        if(!(targetUnit.getClass().equals(unit.getClass()))){
             throw new IllegalArgumentException();
         }
         double valueInBaseUnit=unit.convertToBaseUnit(value);
@@ -38,14 +36,7 @@ public class Quantity <U extends IMeasurable>{
     }
 
     private Quantity<U> add(Quantity<U> quantity1, Quantity<U> quantity2, U targetUnit){
-        /*//Checking Target weight
-        Optional<QuantityWeight> optWeight1 = Optional.ofNullable(quantityWeight1);
-        optWeight1.orElseThrow(NullPointerException::new);
-        //Checking Target weight
-        Optional<QuantityWeight> optWeight2 = Optional.ofNullable(quantityWeight2);
-        optWeight2.orElseThrow(NullPointerException::new);*/
-        //Checking null for source and target value
-        if(!(quantity1.unit instanceof U) || !(quantity2.unit instanceof U)){
+        if(!(quantity1.unit.getClass().equals(targetUnit.getClass())) || !(quantity2.unit.getClass().equals(targetUnit.getClass()))){
             throw new IllegalArgumentException();
         }
         if(!Double.isFinite(quantity1.value) || !Double.isFinite(quantity2.value)){
