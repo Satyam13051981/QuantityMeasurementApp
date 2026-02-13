@@ -28,4 +28,9 @@ public enum LengthUnit implements IMeasurable{
         targetValue = Math.round(targetValue *100)/100.0;
         return targetValue;
     }
+
+    @Override
+    public String getUnitName() {
+        return this.name();
+    }
 }

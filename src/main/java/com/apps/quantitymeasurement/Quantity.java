@@ -1,10 +1,15 @@
 package com.apps.quantitymeasurement;
 
+import java.util.Objects;
+
 public class Quantity <U extends IMeasurable>{
     private double value;
     private U unit;
 
     public Quantity(double value, U unit){
+        if(unit==null){
+            throw new IllegalArgumentException();
+        }
         this.value = value;
         this.unit = unit;
     }
@@ -56,10 +61,14 @@ public class Quantity <U extends IMeasurable>{
         if(this==obj){
             return true;
         }
-        if(!(obj instanceof Quantity)){
+        if(obj == null || getClass() != obj.getClass()){
             return false;
         }
         Quantity quantity = (Quantity) obj;
+
+        if(unit.getClass()!=((Quantity<?>) obj).unit.getClass()){
+            return false;
+        }
         return compare(quantity);
     }
 

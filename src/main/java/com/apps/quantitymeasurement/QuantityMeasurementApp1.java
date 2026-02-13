@@ -1,5 +1,7 @@
 package com.apps.quantitymeasurement;
 
+import javax.xml.transform.sax.SAXSource;
+
 public class QuantityMeasurementApp1 {
 
     public static <U extends IMeasurable> boolean demonstrateEquality(Quantity<U> quantity1, Quantity<U> quantity2){
@@ -47,6 +49,37 @@ public class QuantityMeasurementApp1 {
         System.out.println("sumWeight "+sumWeight);
 
         System.out.println(new Quantity<>(1.0, LengthUnit.FEET).equals(new Quantity<>(1.0, WeightUnit.KILOGRAM)));
+
+        //UC 11
+        System.out.println(new Quantity<>(1.0, VolumeUnit.LITRE).equals(new Quantity<>(1.0, VolumeUnit.LITRE)));
+        System.out.println(new Quantity<>(1.0, VolumeUnit.LITRE).equals(new Quantity<>(1000.0, VolumeUnit.MILLILITRE)));
+        System.out.println(new Quantity<>(1.0, VolumeUnit.GALLON).equals(new Quantity<>(1.0, VolumeUnit.GALLON)));
+        System.out.println(new Quantity<>(1.0, VolumeUnit.LITRE).equals(new Quantity<>(0.264172, VolumeUnit.GALLON)));
+        System.out.println(new Quantity<>(500.0, VolumeUnit.MILLILITRE).equals(new Quantity<>(0.5, VolumeUnit.LITRE)));
+        System.out.println(demonstrateEquality(new Quantity<>(3.78541, VolumeUnit.LITRE), new Quantity<>(1.0, VolumeUnit.GALLON)));
+
+        //UC11 Unit Conversion
+        System.out.println(demonstrateConversion(new Quantity<>(1.0, VolumeUnit.LITRE), VolumeUnit.MILLILITRE));
+        System.out.println(demonstrateConversion(new Quantity<>(2.0, VolumeUnit.GALLON), VolumeUnit.LITRE));
+        System.out.println(demonstrateConversion(new Quantity<>(500.0, VolumeUnit.MILLILITRE), VolumeUnit.GALLON));
+        System.out.println(demonstrateConversion(new Quantity<>(0.0, VolumeUnit.LITRE), VolumeUnit.MILLILITRE));
+        System.out.println(demonstrateConversion(new Quantity<>(1.0, VolumeUnit.LITRE), VolumeUnit.LITRE));
+
+        //UC11 IMPLICIT target unit
+        System.out.println(demonstrateAddition(new Quantity<>(1.0, VolumeUnit.LITRE),new Quantity<>(2.0, VolumeUnit.LITRE)));
+        System.out.println(demonstrateAddition(new Quantity<>(1.0, VolumeUnit.LITRE),new Quantity<>(1000.0, VolumeUnit.MILLILITRE)));
+        System.out.println(demonstrateAddition(new Quantity<>(500.0, VolumeUnit.MILLILITRE),new Quantity<>(0.5, VolumeUnit.LITRE)));
+        System.out.println(demonstrateAddition(new Quantity<>(2.0, VolumeUnit.GALLON),new Quantity<>(3.78541, VolumeUnit.LITRE)));
+
+        //UC11 IMPLICIT target unit
+        System.out.println(demonstrateAddition(new Quantity<>(1.0, VolumeUnit.LITRE),new Quantity<>(1000.0, VolumeUnit.MILLILITRE), VolumeUnit.MILLILITRE));
+        System.out.println(demonstrateAddition(new Quantity<>(1.0, VolumeUnit.GALLON),new Quantity<>(3.78541, VolumeUnit.LITRE), VolumeUnit.GALLON));
+        System.out.println(demonstrateAddition(new Quantity<>(500.0, VolumeUnit.MILLILITRE),new Quantity<>(1.0, VolumeUnit.LITRE), VolumeUnit.GALLON));
+        System.out.println(demonstrateAddition(new Quantity<>(2.0, VolumeUnit.LITRE),new Quantity<>(4.0, VolumeUnit.GALLON), VolumeUnit.LITRE));
+
+        //Category Incompatibility
+        System.out.println(new Quantity<>(1.0, VolumeUnit.LITRE).equals(new Quantity<>(1.0, LengthUnit.FEET)));
+        System.out.println(new Quantity<>(1.0, VolumeUnit.LITRE).equals(new Quantity<>(1.0, WeightUnit.KILOGRAM)));
 
     }
 }
